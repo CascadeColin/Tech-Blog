@@ -1,5 +1,3 @@
-//import modules
-// sequelize to sync db, express-handlebars for changing template engine, dotenv for sensitive info, express-session && connect-session-sequelize for authentication,
 const path = require('path');
 const express = require('express');
 const session = require('express-session');
@@ -40,10 +38,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(routes);
-
-// session cookie to save logged in/logged out state
-// expires on browser/tab close OR with maxAge/expire express-session method (see docs)
-// have session cookie expire after X time (5 minutes?) if idle
 
 //sync database, then tell server to run at Heroku port OR localhost and console.log port number
 sequelize.sync({force:false}).then(() => app.listen(PORT, () => console.log(`Now listening at port ${PORT}!`)));
