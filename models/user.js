@@ -32,6 +32,7 @@ User.init({
       len: [8],
     },
   },
+  // foreign key Blog, user hasMany blogs
 },
 {
     hooks: {
