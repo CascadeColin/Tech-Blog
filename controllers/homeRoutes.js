@@ -8,7 +8,7 @@ router.get('/', async (req, res) => {
             order: [['id', 'ASC']],
         });
         const blogs = userData.map((project) => project.get({ plain: true }));
-        res.render('homepage', {
+        res.render('login', {
             blogs,
         })
     } catch (err) {
