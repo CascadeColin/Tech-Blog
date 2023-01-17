@@ -4,11 +4,14 @@ const loggedIn = require('../utils/auth');
 
 router.get('/', async (req, res) => {
     try {
-        const userData = await Comment.findAll({
-            attributes: { exclude: ['password'] },
+        const userData = await User.findAll({
+            // attributes: { exclude: ['password'] },
             order: [['id', 'ASC']],
         });
-        res.status(200).json(userData);
+        const users = userData.map((project) => project.get({ plain: true }));
+        res.render('homepage', {
+            users,
+        })
     } catch (err) {
         res.status(500).json(err);
     }

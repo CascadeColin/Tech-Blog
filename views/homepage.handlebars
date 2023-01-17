@@ -1,0 +1,13 @@
+{{#each users as |user| }}
+<div>
+  <div>
+    <h2>{{user.id}}</h2>
+  </div>
+  <div>
+    <h3><a href="mailto:{{user.email}}">{{user.email}}</a></h3>
+  </div>
+  <div>
+    <h3>{{user.password}}</h3>
+  </div>
+</div>
+{{/each}}
