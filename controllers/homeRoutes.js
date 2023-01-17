@@ -4,13 +4,12 @@ const loggedIn = require('../utils/auth');
 
 router.get('/', async (req, res) => {
     try {
-        const userData = await User.findAll({
-            // attributes: { exclude: ['password'] },
+        const userData = await Blog.findAll({
             order: [['id', 'ASC']],
         });
-        const users = userData.map((project) => project.get({ plain: true }));
+        const blogs = userData.map((project) => project.get({ plain: true }));
         res.render('homepage', {
-            users,
+            blogs,
         })
     } catch (err) {
         res.status(500).json(err);

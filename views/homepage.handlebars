@@ -1,13 +1,16 @@
-{{#each users as |user| }}
-<div>
-  <div>
-    <h2>{{user.id}}</h2>
+{{#each blogs as |blog|}}
+  <div class="container">
+    <div class=" my-4 border border-2 border-dark rounded-4">
+      <div class="d-flex justify-content-around bg-dark text-light rounded-top-3">
+        <h4>Blog Title</h4>
+        <h4>Posted by: Name at Time</h4>
+      </div>
+      <div class="container text-light">
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste quo
+          quae expedita reiciendis tempora amet obcaecati esse quibusdam dolorum
+          nihil mollitia iure suscipit dignissimos voluptatum eum distinctio,
+          maxime adipisci non?</p>
+      </div>
+    </div>
   </div>
-  <div>
-    <h3><a href="mailto:{{user.email}}">{{user.email}}</a></h3>
-  </div>
-  <div>
-    <h3>{{user.password}}</h3>
-  </div>
-</div>
 {{/each}}
