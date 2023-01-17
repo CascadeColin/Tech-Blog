@@ -1,50 +1,55 @@
-{{!-- import tailwind OR custom CSS (time dependent) --}}
+{{! import tailwind OR custom CSS (time dependent) }}
 
-{{!-- if signed in, display nav links to 'homepage', 'dashboard', 'log out' --}}
+{{! if signed in, display nav links to 'homepage', 'dashboard', 'log out' }}
 
-{{!-- 'homepage' = anchor tag that references a page that contains existing blog posts with post title and creation timestamp --}}
+{{! 'homepage' = anchor tag that references a page that contains existing blog posts with post title and creation timestamp }}
 
-{{!-- when blog post clicked, present 'post title', 'contents', 'poster's username', 'creation timestamp', option to leave a comment --}}
+{{! when blog post clicked, present 'post title', 'contents', 'poster's username', 'creation timestamp', option to leave a comment }}
 
-{{!-- if comment is written and submitted, render page to include comment body as a new comment --}}
+{{! if comment is written and submitted, render page to include comment body as a new comment }}
 
-{{!-- if 'dashboard' clicked, redirect to page containing blog posts written by user, and an option to create a new post --}}
+{{! if 'dashboard' clicked, redirect to page containing blog posts written by user, and an option to create a new post }}
 
-{{!-- if 'create new blog' clicked && title and content !undefined, update dashboard with new post and redirect back to 'dashboard' --}}
+{{! if 'create new blog' clicked && title and content !undefined, update dashboard with new post and redirect back to 'dashboard' }}
 
-{{!-- if existing blog is selected in 'dashboard', options for PUT and DELETE requests are presented and functional --}}
+{{! if existing blog is selected in 'dashboard', options for PUT and DELETE requests are presented and functional }}
 
-{{!-- if logged out button is clicked, state is changed to logged out && redirect to login page if anything clicked --}}
+{{! if logged out button is clicked, state is changed to logged out && redirect to login page if anything clicked }}
 
-<!DOCTYPE html>
+
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Tech Blog</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
-</head>
-<body>
-    <header>
-        <nav>
-            <button>Home</button>
-            <button>Dashboard</button>
-            {{!-- {{#if logged_out}} --}}
-            <button id="login">Login</button>
-            {{!-- {{/if}} --}}
-            {{!-- {{#if logged_in}}
-            <button id="logout">logout</button>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+    />
+  </head>
+  <body>
+    <header class="bg-dark text-light pb-1">
+      <div class="container">
+        <nav class="d-flex justify-content-start">
+          <button type="button" class="btn btn-dark">Home</button>
+          <button type="button" class="btn btn-dark">Dashboard</button>
+          {{!-- {{#if logged_out}} --}}
+          <button type="button" class="btn btn-dark" id="login">Login</button>
+          {{!-- {{/if}} --}}
+          {{!-- {{#if logged_in}}
+            <button type="button" class="btn btn-dark" id="logout">logout</button>
             {{/if}} --}}
         </nav>
-        <div>
-            <h1>The Tech Blog</h1>
-        </div>
+      </div>
+      <div class="container">
+        <h1 class="bg-secondary text-center w-50 pb-2 mt-2 rounded-pill">The Tech Blog</h1>
+      </div>
     </header>
     <main>
-        {{{ body }}}
+      {{{body}}}
     </main>
-    {{!-- FIXME: implement scripts.  if logged in, show logout.js --}}
-    {{!-- <script src=""></script> --}}
-</body>
+    {{! FIXME: implement scripts.  if logged in, show logout.js }}
+    {{! <script src=""></script> }}
+  </body>
 </html>
