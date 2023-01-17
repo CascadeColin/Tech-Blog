@@ -13,7 +13,7 @@ Comment.init(
     },
     body: {
       // STRING defaults to VARCHAR(255), therefore redefined blog body to allow maximum size
-      type: DataTypes.STRING(65535),
+      type: DataTypes.STRING,
       allowNull: false,
     },
     user_id: {
@@ -37,7 +37,7 @@ Comment.init(
     timestamps: true,
     freezeTableName: true,
     underscored: true,
-    modelName: "blog",
+    modelName: "comment",
   }
 );
 

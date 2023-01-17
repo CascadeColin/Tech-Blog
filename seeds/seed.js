@@ -8,25 +8,28 @@ const seedUsers = require('./userData.json');
 const seedAll = async () => {
   await sequelize.sync({ force: true });
 
-  //declared here to maintain function-wide scope
-  let newBlog;
-  const users = await User.bulkCreate(seedUsers, {
+  const newUsers = await User.bulkCreate(seedUsers, {
     individualHooks: true,
     returning: true,
   });
 
-  for (const {id} of users) {
-    newBlog = await Blog.create({
-        user_id: id,
+  for (const blog of seedBlogs) {
+    const newBlogs = await Blog.create({
+      ...blog,
+      // assigns a random user_id for dynamic seed testing
+      user_id: newUsers[Math.floor(Math.random()*newUsers.length)].id,
     });
   }
 
   for (const comment of seedComments) {
-    const newComment = await Comment.create({
-        ...comment,
-        // get a random user id and blog id and assign it to each comment
-        user_id: users[Math.floor(Math.random() * users.length)].id,
-        blog_id: newBlog[Math.floor(Math.random() * users.length)].id
+    // set blogNum to the number of blogs you are seeding
+    // hard-coded because newBlogs is not available in this scope
+    const blogNum = 4;
+    const newComments = await Comment.create({
+      ...comment,
+      // assigns a random user_id for dynamic seed testing
+      user_id: newUsers[Math.floor(Math.random()*newUsers.length)].id,
+      blog_id: Math.ceil(Math.random()*blogNum),
     })
   }
   process.exit(0);

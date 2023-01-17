@@ -36,9 +36,9 @@ User.init(
   },
   {
     hooks: {
-      // wait for bcrypt to convert password string to hash, return hash, store hash in db
-      hashPassword: async (newUserPassword) => {
-        newUserPassword.password = await bcrypt.hash(newUserPassword, 10);
+      // wait for bcrypt to convert password string to hash, then return the hash
+      beforeCreate: async (newUserPassword) => {
+        newUserPassword.password = await bcrypt.hash(newUserPassword.password, 10);
         return newUserPassword;
       },
     },
