@@ -9,44 +9,45 @@ class User extends Model {
   }
 }
 
-User.init({
-  id: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
-    primaryKey: true,
-    autoIncrement: true,
-  },
-  // serves as username for logins
-  email: {
-    type: DataTypes.STRING,
-    allowNull: false,
-    unique: true,
-    validate: {
-      isEmail: true,
+User.init(
+  {
+    id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      primaryKey: true,
+      autoIncrement: true,
+    },
+    // serves as username for logins
+    email: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: true,
+      validate: {
+        isEmail: true,
+      },
+    },
+    password: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        len: [8],
+      },
     },
   },
-  password: {
-    type: DataTypes.STRING,
-    allowNull: false,
-    validate: {
-      len: [8],
-    },
-  },
-  // foreign key Blog, user hasMany blogs
-},
-{
+  {
     hooks: {
-        // wait for bcrypt to convert password string to hash, return hash, store hash in db
-        hashPassword: async (newUserPassword) => {
-            newUserPassword.password = await bcrypt.hash(newUserPassword, 10);
-            return newUserPassword;
-        },
+      // wait for bcrypt to convert password string to hash, return hash, store hash in db
+      hashPassword: async (newUserPassword) => {
+        newUserPassword.password = await bcrypt.hash(newUserPassword, 10);
+        return newUserPassword;
+      },
     },
     sequelize,
     timestamps: false,
     freezeTableName: true,
     underscored: true,
-    modelName: 'user',
-});
+    modelName: "user",
+  }
+);
 
 module.exports = User;
