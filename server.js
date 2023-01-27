@@ -16,10 +16,10 @@ const PORT = process.env.PORT || 3001;
 const hbs = exphbs.create({ helpers });
 
 const cookie = {
-  secret: process.env.SESSION_COOKIE_SECRET,
+  secret: process.env.SECRET,
   cookie: {
-    // set session to expire if idle for 10 minutes (600000 millisecs)
-    maxAge: 600000,
+    // set session to expire if idle for 10 minutes
+    maxAge: 1000*60*10,
   },
   resave: false,
   saveUninitialized: true,
